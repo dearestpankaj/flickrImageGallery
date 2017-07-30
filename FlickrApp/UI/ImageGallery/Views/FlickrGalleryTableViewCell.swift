@@ -27,22 +27,7 @@ class FlickrGalleryTableViewCell: UITableViewCell {
             lblTitle.text = title
         }
         imgVwPhoto.image = nil
-        imgVwPhoto.af_setImage(withURL: URL(string: getPhotoURL(flickrPhoto: photo))!)
-    }
-    
-    
-    /// get url of the image from Photo Object
-    ///
-    /// - Parameter flickrPhoto: Photo object
-    /// - Returns: image url
-    func getPhotoURL(flickrPhoto:Photo)->String{
-        var url = ""
-        url = "https://farm" + String(flickrPhoto.farm!)
-        url = url + ".staticflickr.com/"
-        url = url + flickrPhoto.server!
-        url = url + "/"+flickrPhoto.id!
-        url = url + "_"+flickrPhoto.secret!+".jpg"
-        return url
+        imgVwPhoto.af_setImage(withURL: URL(string: PhotoGalleryUtilities.getPhotoURL(flickrPhoto: photo))!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

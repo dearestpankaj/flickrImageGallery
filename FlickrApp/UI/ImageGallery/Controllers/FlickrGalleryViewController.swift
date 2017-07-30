@@ -9,7 +9,14 @@
 import UIKit
 
 let FlickrGalleryTableViewCellIdentifier = "FlickrGalleryTableViewCell"
+let SegueShowPhotoViewController = "segueShowPhotoViewController"
 
+extension FlickrGalleryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        performSegue(withIdentifier: SegueShowPhotoViewController, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
 extension FlickrGalleryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrPhoto.count
@@ -42,6 +49,17 @@ class FlickrGalleryViewController: UIViewController {
             (data) -> Void in
             print(data)
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == SegueShowPhotoViewController){
+            if let indexPath = tblvwPics.indexPathForSelectedRow {
+                if let destinationViewController = segue.destination as? ShowPhotoViewController{
+                    let imgurl = PhotoGalleryUtilities.getPhotoURL(flickrPhoto: arrPhoto[indexPath.row])
+                    destinationViewController.imgURL = imgurl
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
