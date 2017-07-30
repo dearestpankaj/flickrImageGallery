@@ -16,19 +16,7 @@ class Photo: Mappable {
     var farm:Int?
     var title:String?
     
-    init(id: String, secret: String, server: String, farm:Int, title:String) {
-        self.id = id
-        self.secret = secret
-        self.server = server
-        self.farm = farm
-        self.title = title
-    }
-    
     required init?(map: Map){
-        
-    }
-    
-    init(){
         
     }
     
@@ -38,15 +26,5 @@ class Photo: Mappable {
         server <- map["server"]
         farm <- map["farm"]
         title <- map["title"]
-    }
-    
-    func getPhotoURL()->String{
-        var url = ""
-        url = "https://farm" + String(self.farm!)
-        url = url + ".staticflickr.com/"
-        url = url + self.server!
-        url = url + "/"+self.id!
-        url = url + "_"+self.secret!+".jpg"
-        return url
     }
 }

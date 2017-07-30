@@ -8,24 +8,29 @@
 
 import UIKit
 
+let FlickrGalleryTableViewCellIdentifier = "FlickrGalleryTableViewCell"
+
 extension FlickrGalleryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrPhoto.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FlickrGalleryTableViewCell", for: indexPath) as? FlickrGalleryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FlickrGalleryTableViewCellIdentifier, for: indexPath) as? FlickrGalleryTableViewCell
         cell?.loadData(photo: arrPhoto[indexPath.row])
         return cell!
     }
 }
+
 class FlickrGalleryViewController: UIViewController {
     @IBOutlet weak var tblvwPics: UITableView!
+    
     var arrPhoto:[Photo] = [] {
         didSet{
             tblvwPics.reloadData()
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

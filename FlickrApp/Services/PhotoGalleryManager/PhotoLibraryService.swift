@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class PhotoLibraryService: NSObject {
     
+    /// Fetch list of photos from flickr api
+    ///
+    /// - Parameters:
+    ///   - successArrayResponse: array of Photo objects
+    ///   - failure: failure error
     func fetchPhotoList(successArrayResponse: @escaping ((_ arrContent:[Photo])->Void),failure: @escaping ((NetworkError)->Void)) {
         let network = NetworkOperations()
         network.fetchResponse(url: NetworkURLS.publicPhotoURL, successArrayResponse: {
@@ -24,31 +30,21 @@ class PhotoLibraryService: NSObject {
             }
         }, failure: {
             (data) -> Void in
-            print(data)
             failure(data)
         })
     }
     
+    
+    /// Convert json object to Photo object
+    ///
+    /// - Parameter array: array of json objects
+    /// - Returns: array of Photo object
     private func createPhotoModel(array:[AnyObject]) -> [Photo]{
         var arrPhoto = [Photo]()
         for item in array {
-            let objPhoto = Photo()
-            if let id = item["id"] as? String {
-                objPhoto.id = id
+            if let objPhoto = Mapper<Photo>().map(JSONObject:item){
+                arrPhoto.append(objPhoto)
             }
-            if let secret = item["secret"] as? String {
-                objPhoto.secret = secret
-            }
-            if let server = item["server"] as? String {
-                objPhoto.server = server
-            }
-            if let farm = item["farm"] as? Int {
-                objPhoto.farm = farm
-            }
-            if let title = item["title"] as? String {
-                objPhoto.title = title
-            }
-            arrPhoto.append(objPhoto)
         }
         return arrPhoto
     }
