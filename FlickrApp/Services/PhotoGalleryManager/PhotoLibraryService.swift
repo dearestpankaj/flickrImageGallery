@@ -16,9 +16,9 @@ class PhotoLibraryService: NSObject {
     /// - Parameters:
     ///   - successArrayResponse: array of Photo objects
     ///   - failure: failure error
-    func fetchPhotoList(successArrayResponse: @escaping ((_ arrContent:[Photo])->Void),failure: @escaping ((NetworkError)->Void)) {
+    func fetchPhotoList(flickrUserID:String, successArrayResponse: @escaping ((_ arrContent:[Photo])->Void),failure: @escaping ((NetworkError)->Void)) {
         let network = NetworkOperations()
-        network.fetchResponse(url: NetworkURLS.publicPhotoURL, successArrayResponse: {
+        network.fetchResponse(url: NetworkURLS.publicPhoto(userid: flickrUserID), successArrayResponse: {
             (response:[AnyObject]) -> Void in
             successArrayResponse(self.createPhotoModel(array: response))
         }, successDictionaryResponse: {

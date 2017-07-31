@@ -10,6 +10,7 @@ import UIKit
 
 let FlickrGalleryTableViewCellIdentifier = "FlickrGalleryTableViewCell"
 let SegueShowPhotoViewController = "segueShowPhotoViewController"
+let flickerUser = "41687112%40N06"
 
 extension FlickrGalleryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -42,7 +43,7 @@ class FlickrGalleryViewController: UIViewController {
         super.viewDidLoad()
         
         let photos = PhotoLibraryService()
-        photos.fetchPhotoList(successArrayResponse: {
+        photos.fetchPhotoList(flickrUserID: flickerUser,successArrayResponse: {
             (arrResponse:[Photo]) -> Void in
             self.arrPhoto = arrResponse
         }, failure: {
@@ -55,8 +56,7 @@ class FlickrGalleryViewController: UIViewController {
         if(segue.identifier == SegueShowPhotoViewController){
             if let indexPath = tblvwPics.indexPathForSelectedRow {
                 if let destinationViewController = segue.destination as? ShowPhotoViewController{
-                    let imgurl = PhotoGalleryUtilities.getPhotoURL(flickrPhoto: arrPhoto[indexPath.row])
-                    destinationViewController.imgURL = imgurl
+                    destinationViewController.objPhoto = arrPhoto[indexPath.row]
                 }
             }
         }

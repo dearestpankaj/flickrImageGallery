@@ -9,14 +9,35 @@
 import UIKit
 import AlamofireImage
 
+
+extension ShowPhotoViewController: MailMessageHelperDelegate {
+    func messageSentSuccess(){
+        UIAlertController.presentCustomAlertControllerWithTitle("Success", message: "Email sent", Button: ["Done"], From: self, WithAction: {_ in })
+    }
+    
+    func messageSentFailure(error:Error){
+        UIAlertController.presentCustomAlertControllerWithTitle("Error", message: error.localizedDescription, Button: ["Done"], From: self, WithAction: {_ in })
+    }
+}
 class ShowPhotoViewController: UIViewController {
 
     @IBOutlet weak var imgvwPhoto: UIImageView!
-    var imgURL:String!
+    var objPhoto:Photo!
     override func viewDidLoad() {
         super.viewDidLoad()
-        imgvwPhoto.af_setImage(withURL: URL(string: imgURL)!)
         // Do any additional setup after loading the view.
+        self.title = objPhoto.title
+        let imgurl = PhotoGalleryUtilities.getPhotoURL(flickrPhoto: objPhoto)
+        imgvwPhoto.af_setImage(withURL: URL(string: imgurl)!)
+        let barbtnShare = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(ShowPhotoViewController.emailFlickerPic))
+        self.navigationItem.rightBarButtonItem = barbtnShare
+    }
+    
+    /// Action on click of share email barbutton
+    func emailFlickerPic(){
+        let mail = MailMessageHelper()
+        mail.delegate = self
+        mail.sendEmailWithAttachment(senderVC: self, mailMessage: MailMessage(toRecipients: [""], subject: objPhoto.title!, messageBody: "", imageAttachment: imgvwPhoto.image!)!)
     }
 
     override func didReceiveMemoryWarning() {
