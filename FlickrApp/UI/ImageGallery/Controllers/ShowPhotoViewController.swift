@@ -39,6 +39,21 @@ class ShowPhotoViewController: UIViewController {
         mail.delegate = self
         mail.sendEmailWithAttachment(senderVC: self, mailMessage: MailMessage(toRecipients: [""], subject: objPhoto.title!, messageBody: "", imageAttachment: imgvwPhoto.image!)!)
     }
+    
+    @IBAction func saveImageToPhotoGallery(_ sender: Any) {
+        if(imgvwPhoto.image != nil){
+            UIImageWriteToSavedPhotosAlbum(imgvwPhoto.image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
+    }
+    
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if error == nil {
+            UIAlertController.presentCustomAlertControllerWithTitle("Success", message: "Image saved to Photo Gallery", Button: ["Done"], From: self, WithAction: {_ in })
+        } else {
+            UIAlertController.presentCustomAlertControllerWithTitle("Error", message: (error?.localizedDescription)!, Button: ["Done"], From: self, WithAction: {_ in })
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
