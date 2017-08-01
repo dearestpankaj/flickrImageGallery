@@ -43,7 +43,6 @@ class MailMessageHelper: NSObject {
     ///   - senderVC: sender UIViewController
     ///   - mailMessage: MailMessage object
     func sendEmailWithAttachment(senderVC: UIViewController, mailMessage:MailMessage) {
-//        mailComposeViewController = configuredMailComposeViewController(mailMsg: mailMessage)
         mailComposeViewController = MFMailComposeViewController()
         mailComposeViewController.mailComposeDelegate = self
         mailComposeViewController.setToRecipients(mailMessage.toRecipients)

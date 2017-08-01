@@ -11,6 +11,11 @@
 		043C27401F2FA6D900C812A2 /* MailMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C273F1F2FA6D900C812A2 /* MailMessage.swift */; };
 		043C27421F2FAE6E00C812A2 /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C27411F2FAE6E00C812A2 /* ErrorHelper.swift */; };
 		043C27451F2FB0F500C812A2 /* UIAlertController+FlickerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C27441F2FB0F500C812A2 /* UIAlertController+FlickerApp.swift */; };
+		043C27461F30214F00C812A2 /* PhotoGalleryUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04561F2E6331004832EF /* PhotoGalleryUtilities.swift */; };
+		043C27471F302FD100C812A2 /* PhotoLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04501F2D0660004832EF /* PhotoLibraryService.swift */; };
+		043C27481F30328F00C812A2 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04491F2CD68B004832EF /* NetworkOperations.swift */; };
+		043C27491F30329500C812A2 /* NetworkURLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E044B1F2CD84E004832EF /* NetworkURLS.swift */; };
+		043C274A1F3032CF00C812A2 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04471F2CD120004832EF /* Photo.swift */; };
 		043E040B1F2CA450004832EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043E040A1F2CA450004832EF /* Assets.xcassets */; };
 		043E04191F2CA450004832EF /* FlickrAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04181F2CA450004832EF /* FlickrAppTests.swift */; };
 		043E04241F2CA450004832EF /* FlickrAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04231F2CA450004832EF /* FlickrAppUITests.swift */; };
@@ -427,7 +432,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043C274A1F3032CF00C812A2 /* Photo.swift in Sources */,
+				043C27481F30328F00C812A2 /* NetworkOperations.swift in Sources */,
+				043C27471F302FD100C812A2 /* PhotoLibraryService.swift in Sources */,
+				043C27461F30214F00C812A2 /* PhotoGalleryUtilities.swift in Sources */,
 				043E04191F2CA450004832EF /* FlickrAppTests.swift in Sources */,
+				043C27491F30329500C812A2 /* NetworkURLS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
