@@ -16,6 +16,7 @@
 		043C27481F30328F00C812A2 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04491F2CD68B004832EF /* NetworkOperations.swift */; };
 		043C27491F30329500C812A2 /* NetworkURLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E044B1F2CD84E004832EF /* NetworkURLS.swift */; };
 		043C274A1F3032CF00C812A2 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04471F2CD120004832EF /* Photo.swift */; };
+		043E040B1F2CA450004832EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043E040A1F2CA450004832EF /* Assets.xcassets */; };
 		043E04191F2CA450004832EF /* FlickrAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04181F2CA450004832EF /* FlickrAppTests.swift */; };
 		043E04241F2CA450004832EF /* FlickrAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E04231F2CA450004832EF /* FlickrAppUITests.swift */; };
 		043E043E1F2CAC3F004832EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E043D1F2CAC3F004832EF /* AppDelegate.swift */; };
