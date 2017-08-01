@@ -12,7 +12,7 @@ import AlamofireImage
 
 extension ShowPhotoViewController: MailMessageHelperDelegate {
     func messageSentSuccess(){
-        UIAlertController.presentCustomAlertControllerWithTitle("Success", message: "Email sent", Button: ["Done"], From: self, WithAction: {_ in })
+        UIAlertController.presentCustomAlertControllerWithTitle(NSLocalizedString("success", comment: "success"), message: NSLocalizedString("email_sent", comment: "email sent"), Button: [NSLocalizedString("done", comment: "")], From: self, WithAction: {_ in })
     }
     
     func messageSentFailure(error:Error){
@@ -37,8 +37,29 @@ class ShowPhotoViewController: UIViewController {
     func emailFlickerPic(){
         let mail = MailMessageHelper()
         mail.delegate = self
-        mail.sendEmailWithAttachment(senderVC: self, mailMessage: MailMessage(toRecipients: [""], subject: objPhoto.title!, messageBody: "", imageAttachment: imgvwPhoto.image!)!)
+        guard let image = imgvwPhoto.image else {
+            return
+        }
+        if let imageTitle = objPhoto.title{
+            mail.sendEmailWithAttachment(senderVC: self, mailMessage: MailMessage(toRecipients: [""], subject: imageTitle, messageBody: "", imageAttachment: image)!)
+        }
+        
     }
+    
+    @IBAction func saveImageToPhotoGallery(_ sender: Any) {
+        if(imgvwPhoto.image != nil){
+            UIImageWriteToSavedPhotosAlbum(imgvwPhoto.image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
+    }
+    
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if error == nil {
+            UIAlertController.presentCustomAlertControllerWithTitle(NSLocalizedString("success", comment: "success"), message: NSLocalizedString("image_saved_gallery", comment: "image_saved_gallery"), Button: [NSLocalizedString("done", comment: "done")], From: self, WithAction: {_ in })
+        } else {
+            UIAlertController.presentCustomAlertControllerWithTitle(NSLocalizedString("error", comment: "error"), message: (error?.localizedDescription)!, Button: [NSLocalizedString("done", comment: "done")], From: self, WithAction: {_ in })
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

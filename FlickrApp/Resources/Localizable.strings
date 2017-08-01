@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  FlickrApp
+
+  Created by Pankaj Sachdeva on 8/1/17.
+  Copyright © 2017 Pankaj Sachdeva. All rights reserved.
+*/
+"ok" = "OK";
+"done" = "Done";
+"success" = "Success";
+"email_sent" = "Email sent";
+"error" = "Error";
+"image_saved_gallery" = "Image saved to Photo Gallery";
